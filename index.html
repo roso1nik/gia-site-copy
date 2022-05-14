@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ОГЭ - русский язык</title>
+    <link rel="shortcut icon" href="https://static.tildacdn.com/tild3233-6137-4134-b431-306432353162/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://static.tildacdn.com/tild3233-6137-4134-b431-306432353162/favicon.ico">
+    <link rel="stylesheet" href="styles/root.css">
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/media.css">
+</head>
+<body>
+    <div id="root">
+        <div class="pre-header"> 
+            <div class="flex-left">
+                <h3 id="name-pupil" title="Посмотреть информацию о данных">Иван Иванов</h3>
+                <p class="italic">Желаем удачи!</p>
+            </div>
+            <div class="flex-right">
+                <div class="flex-column">
+                    <p>Станция проведения экзамена в компьютерной форме</p>
+                    <p id="date">Дата: 1 апреля 2022 года. ОГЭ по ИКТ</p>
+                </div>
+            </div>
+        </div>
+        <header id="header">
+            <div class="flex-row">
+                <div class="flex-left">
+                    <button style="min-width: 160px;">Калькулятор</button>
+                    <!-- <button>Линейка</button>
+                    <button>Справочные материалы</button> -->
+                    <div class="dropdown">
+                        <button title="Компилятор для 15 задания, например, ABC Pascal" style="min-width: 160px;">IDE</button>
+                        <div class="dropdown-cont">
+                            <button>ABC Pascal</button>
+                            <button>Python</button>
+                            <button>C++</button>
+                            <button>Другое...</button>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button style="min-width: 160px;">Робот/Чертежник</button>
+                        <div class="dropdown-cont">
+                            <button>Робот</button>
+                            <button>Чертежник</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-right">
+                    <p id="timer">Осталось 03:55</p>
+                    <button id="end">Закончить экзамен</button>
+                </div>
+            </div>
+            <div class="flex-row margin_top10">
+                <div class="questions-cont">
+                    <p>1 часть</p>
+                    <button class="question-now" onclick="goToQues(1)" id="button_choose1">1</button>
+                    <button onclick="goToQues(2)" id="button_choose2">2</button>
+                    <button onclick="goToQues(3)" id="button_choose3">3</button>
+                    <button onclick="goToQues(4)" id="button_choose4">4</button>
+                    <button onclick="goToQues(5)" id="button_choose5">5</button>
+                    <button onclick="goToQues(6)" id="button_choose6">6</button>
+                    <button onclick="goToQues(7)" id="button_choose7">7</button>
+                    <button onclick="goToQues(8)" id="button_choose8">8</button>
+                    <button onclick="goToQues(9)" id="button_choose9">9</button>
+                    <button onclick="goToQues(10)" id="button_choose10">10</button>
+                    <p>2 часть</p>
+                    <button onclick="goToQues(11)" id="button_choose11">11</button>
+                    <button onclick="goToQues(12)" id="button_choose12">12</button>
+                    <button onclick="goToQues(13)" id="button_choose13">13</button>
+                    <button onclick="goToQues(14)" id="button_choose14">14</button>
+                    <button onclick="goToQues(15)" id="button_choose15">15</button>
+                </div>
+            </div>
+        </header>
+        <main id="main">
+            <div class="question-cont">
+                <div class="flex-row zoom">
+                    <button title="Увеличить шрифт" id="largeFont">A+</button>
+                    <button title="Уменьшить шрифт" id="smallFont">A-</button>
+                    <button title="Установить обычный размер шрифта" id="returnFont">По умолчанию</button>
+                </div>
+                <div class="flex-row margin-top3">
+                    <h1 id="quest-num">1 задание</h1>
+                    <p>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</p>
+                    <p id="part-num">1 часть</p>
+                </div>
+                
+                <p id="questionNow">Возникла ошибка загрузки задания, обратитесь к организатору экзамена</p>
+                <div class="flex-row margin_top10 gap10" id="answer__boxInput">
+                    <p class="">Ваш ответ:</p>
+                    <input type="text" placeholder="" id="userAns" maxlength="1000"> 
+                    <button id="save">ответить</button> 
+                    <p id="status">ответ не сохранен</p>
+                </div>
+                <div class="flex-row margin_top10 gap10" id="answer__boxFile">
+                    <p class="">Ваш ответ:</p>
+                    <input type="file" id="userFile"> 
+                    <button id="load">загрузить</button> 
+                    <p id="status__file">ответ не сохранен</p>
+                </div>
+                <!-- сделать, чтобы при 11 и 12 задании  открывалось модальное окно где можно было бы сделать задание -->
+            </div>
+            <div class="answers-cont">
+                <button id="prev-ques">Предыдущий вопрос</button>
+                <button id="next-ques">Следующий вопрос</button>
+                <button id="end-ques">Завершить экзамен</button>
+            </div>
+            <div class="answers-cont">
+                <button id="for-personal" class="buttonHowUrl" title="Не нажимайте на данную кнопку, она предназначена специально для огранизаторов экзамена">Для организаторов</button>
+            </div>
+        </main>
+        <div id="end-work">
+            <h1>Экзамен окончен</h1>
+        </div>
+
+        <div class="mobile-warn">
+            <h1>Данное устройство не подходит для станции проведения экзамена</h1>
+            <div class="flex-row mbfix">
+                <p>Ваше устройство не подходит по требованием, как станция для проведения ГИА. Если вы считаете, что это ошибка, обратитесь по&nbsp;</p>
+                <a href="mobile-error.html">этой ссылке</a>
+            </div>
+        </div>
+
+        <div class="popup" id="popup">
+            <div class="popup-cont">
+                <div class="popup-close">
+                    <button id="popup__close">Закрыть</button>
+                </div>
+                <div class="popup-info" id="slide__1">
+                    <h1 id="h1_1">Только для организаторов</h1>
+                    <h1 id="h1_2">Подтвердите ваш ID</h1>
+                    <p>Пожалуйста, закройте данное окно, оно предназначено <i>только </i>для организаторов.</p>
+                    <p><b>Предупреждение:</b> Вас удалят с эказмена, если вы введете код организатора или сделаете другие противоправные действия.</p>
+                    <input type="password" id="pass-org">
+                    <button id="next_org">Далее</button>
+                    <p id="pass__incorrent">Пароль неверный</p>
+                </div>
+
+                <div class="popup-info" id="settings-org">
+                    <h1>Получение бланка/изменение данных</h1>
+                    <h3>Получение бланка</h3>
+                    <div class="flex-row">
+                        <p>Получено бланков:&nbsp;</p>
+                        <p id="howmuch-lists">0</p>
+                    </div>
+                    <div class="flex-row gap10">
+                        <p>Введите код бланка: </p>
+                        <input type="text" id="input__blankValue">
+                        <button id="blank__get">получить</button>
+                    </div>
+                    <h3>Лабораторная работа</h3>
+                    <div class="flex-row gap10">
+                        <p>Введите код набора: </p>
+                        <input type="text">
+                        <button>получить</button>
+                    </div>
+                    <h3>Другое расположение экзаменационных файлов</h3>
+                    <div class="flex-row">
+                        <p>Выберите номер задания:&nbsp;</p>
+                        <select>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                        </select>
+                    </div>
+                    <div class="flex-row gap10">
+                        <p>Расположение: </p>
+                        <input type="file">
+                        <button>загрузить</button>
+                    </div>
+                    <p class="margin_top10">расположение сейчас: ../gia/534/inf-2/g/files/...</p>
+                    <h3>Изменение данных участника</h3>
+                    <div class="flex-row">
+                        <p>Выберите, что изменить:&nbsp;</p>
+                        <select>
+                            <option>ФИО</option>
+                            <option>Код регистрации</option>
+                            <option>Номер аудитории</option>
+                            <option>Код экзамена</option>
+                            <option>Серия и номер паспорта</option>
+                        </select>
+                    </div>
+                    <div class="flex-row gap10">
+                        <p>Изменение данных: </p>
+                        <input type="text">
+                        <button>подтвердить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="popup" id="popup__name">
+            <div class="popup-cont">
+                <div class="popup-close">
+                    <button id="popup__close1">Закрыть</button>
+                </div>
+                <div class="popup-info">
+                    <h1>Иван Иванов Иванович</h1>
+                    <div class="flex-row">
+                        <p>Предмет:&nbsp;</p>
+                        <p>ИКТ</p>
+                    </div>
+                    <div class="flex-row">
+                        <p>Код регистрации:&nbsp;</p>
+                        <p>0000000000000000</p>
+                    </div>
+                    <div class="flex-row">
+                        <p>Код аудитории:&nbsp;</p>
+                        <p>019</p>
+                    </div>
+                    <div class="flex-row">
+                        <p>Код экзамена:&nbsp;</p>
+                        <p>12345</p>
+                    </div>
+                    <h3 style="margin-top: 15px;">Паспорт:</h3>
+                    <div class="flex-row">
+                        <p>Серия:&nbsp;</p>
+                        <p>4000</p>
+                    </div>
+                    <div class="flex-row">
+                        <p>Номер:&nbsp;</p>
+                        <p>340340</p>
+                    </div>
+                    <div class="flex-center margin_top10">
+                        <p>Если вы заметили ошибку, то обратитесь к организаторам экзамена.</p>
+                    </div>
+                    <div class="flex-center">
+                        <p class="italic">Желаем удачи!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="popup" id="end__window">
+            <div class="popup-cont" style="height: auto; padding-bottom: 50px;">
+                <div class="popup-close">
+                    <button id="popup__close2">Закрыть</button>
+                </div>
+                <div class="flex-center" id="end__step1">
+                    <div class="flex-column">
+                        <h1 style="font-size: 56px;">Завершить экзамен</h1>
+                        <p id="warnEnd">Внимание: вы не выполнили все задания</p>
+                        <button id="endTest" class="margin_top10">Завершить</button>
+                        <h2 class="margin_top10">Ваши ответы:</h2>
+                        <p id="user___answer">Вы не ответили еще ни на один вопрос</p>
+                    </div>
+                </div>
+
+                <div class="flex-center" id="end__step2">
+                    <div class="flex-column">
+                        <h1 style="font-size: 56px;">Завершить экзамен</h1>
+                        <p id="warnEnd"><b>Внимание: данные поля должен заполнять организатор экзамена!</b></p>
+                        <div class="flex-column">
+                            <p class="margin_top10">Введите код: </p>
+                            <input type="password" id="code__over">
+                            <p class="margin_top10">Введите ID: </p>
+                            <input type="password" id="id__over">
+                            <p id="pass__incorrentOver">Пароль неверный</p>
+                            <button id="check__over">Подтвердить</button> 
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-center" id="end__step3">
+                    <div class="flex-column">
+                        <h1 style="font-size: 56px;">Завершить экзамен</h1>
+                        <p id="warnEnd"><b>Внимание: заполните ниже все поля!</b></p>
+                        <div class="flex-column">
+                            <div class="flex-row margin_top10">
+                                <p>Участник завершил все задания и готов&nbsp;</p>
+                                <input type="checkbox" id="PupleIsReady">
+                            </div>
+                            <div class="flex-row margin_top10">
+                                <p>Участник удален с экзамена&nbsp;</p>
+                                <input type="checkbox" id="PupleIsDelete">
+                            </div>
+                            <div class="flex-row margin_top10">
+                                <p>Выдано </p>
+                                <p id="blank__howmuch">&nbsp;0 бланков</p>
+                            </div>
+                            <button class="margin_top10" id="over__overButton">Закончить экзамен</button> 
+                            <p id="pupilNotReady">Ученик не готов</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+    
+
+    <noscript>Для работы сайта требуется JavaScript! Если ты видишь это на экзамене, то обратись к организатору проведения экхамена.</noscript>
+    <script src="main.js"></script>
+</body>
+</html>
